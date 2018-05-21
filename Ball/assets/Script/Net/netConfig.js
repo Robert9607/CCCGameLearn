@@ -4,5 +4,4 @@
 module.exports={
     host:"ws://localhost",
     port:8181
-
 };

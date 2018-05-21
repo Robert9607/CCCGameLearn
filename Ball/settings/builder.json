@@ -18,16 +18,16 @@
     "portrait": false,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.Ball",
+  "packageName": "org.cocos2d.helloworld",
   "privateKey": "",
   "renderMode": "0",
-  "startScene": "56b31887-cc7c-4afa-8432-485312ff3a70",
-  "title": "Ball",
+  "startScene": "f8b75d88-21e9-4d26-8626-a227802d4525",
+  "title": "hello_world",
   "webOrientation": "auto",
   "wechatgame": {
-    "appid": "wx6ac3f5090a6b99c5 ",
+    "appid": "wx6ac3f5090a6b99c5",
     "orientation": "portrait"
   },
-  "xxteaKey": "237541cd-44a3-48",
+  "xxteaKey": "5da7334a-c83f-4b",
   "zipCompressJs": true
 }
