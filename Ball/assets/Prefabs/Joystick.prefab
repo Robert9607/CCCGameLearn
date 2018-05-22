@@ -1,15 +1,16 @@
 [
   {
-    "__type__": "cc.SceneAsset",
+    "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
     "_rawFiles": null,
-    "scene": {
+    "data": {
       "__id__": 1
     }
   },
   {
-    "__type__": "cc.Scene",
+    "__type__": "cc.Node",
+    "_name": "Joystick",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -19,9 +20,15 @@
     ],
     "_tag": -1,
     "_active": true,
-    "_components": [],
-    "_prefab": null,
-    "_id": "f8b75d88-21e9-4d26-8626-a227802d4525",
+    "_components": [
+      {
+        "__id__": 8
+      }
+    ],
+    "_prefab": {
+      "__id__": 9
+    },
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -33,23 +40,33 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 0.5,
+      "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 0,
       "height": 0
     },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
-    "groupIndex": 0,
-    "autoReleaseAssets": null
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
-    "_name": "Canvas",
+    "_name": "joystick",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -63,11 +80,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 5
+        "__id__": 6
       }
     ],
-    "_prefab": null,
-    "_id": "c6uDdcczZN16Di4M9LFMCU",
+    "_prefab": {
+      "__id__": 7
+    },
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -84,8 +103,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 480,
-      "height": 720
+      "width": 187,
+      "height": 187
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -93,8 +112,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 240,
-      "y": 360
+      "x": 0,
+      "y": -200
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -105,7 +124,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "game-contoller",
+    "_name": "ball",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -118,8 +137,10 @@
         "__id__": 4
       }
     ],
-    "_prefab": null,
-    "_id": "44d1iw/fdIiKQhYb3D4ZSR",
+    "_prefab": {
+      "__id__": 5
+    },
+    "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -136,8 +157,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 91,
+      "height": 94
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -156,37 +177,105 @@
     "groupIndex": 0
   },
   {
-    "__type__": "75c71GU6LROgYHP5+eSdcH3",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 3
     },
     "_enabled": true,
-    "main_world_prefab": {
-      "__uuid__": "96ebf6a4-ff97-436e-a5a9-d39d36120a44"
+    "_spriteFrame": {
+      "__uuid__": "68dfa620-d468-458f-b51a-111e3fe78c60"
     },
-    "joystick_prefab": {
-      "__uuid__": "40bf6ca5-9759-4192-b696-eb03206c3095"
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
     },
-    "BGSound": {
-      "__uuid__": "7d07fb70-8502-4676-a206-e4f262e725c0"
-    }
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
   },
   {
-    "__type__": "cc.Canvas",
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "9fT4OtrEdLzYG6By6Kb3Pb",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 2
     },
     "_enabled": true,
-    "_designResolution": {
-      "__type__": "cc.Size",
-      "width": 480,
-      "height": 720
+    "_spriteFrame": {
+      "__uuid__": "368ccb03-70a2-44d0-af0b-5f9099288516"
     },
-    "_fitWidth": false,
-    "_fitHeight": true
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "49TeqRDexCFp2y6OV9KyoP",
+    "sync": false
+  },
+  {
+    "__type__": "0d60373UUFLqb8dps/OkOQJ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "BG": {
+      "__id__": 2
+    },
+    "Ball": {
+      "__id__": 3
+    },
+    "angle": 0,
+    "radiu": 85
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "d0eugh6uRMcZcUeqnPLv60",
+    "sync": false
   }
 ]

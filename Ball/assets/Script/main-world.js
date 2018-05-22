@@ -1,6 +1,6 @@
 import Ball from "./Ball";
 import global from "./global";
-import netControl from "./Net/NetControl";
+import CMD from "./Net/CMD";
 
 cc.Class({
     extends: cc.Component,
@@ -32,9 +32,18 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad: function () {
         this.title.string = "开始";
-        this.initTouch();
+        //this.initTouch();
+       
+        global.eventlistener.on("connect", this.startTouch.bind(this));
+         /*
         global.eventlistener.on("updataOthers", this.updataOthers.bind(this));
         global.eventlistener.on("startMove", this.startMove.bind(this));
+        */
+        global.eventlistener.on("otherMove", this.otherMove.bind(this));
+    },
+    startTouch: function (data) {
+        this.schedule(this.onTouchMove, 0);
+        this.schedule(this.synMove, 0);
     },
     updataOthers: function (data) {
         var index = (global.sign + 1) % 2;
@@ -60,13 +69,13 @@ cc.Class({
             var y = event.getDeltaY();
             this.ball[global.sign].node.x += x;
             this.ball[global.sign].node.y += y;
-            netControl.send(JSON.stringify({
-                code: 1001,
+            global.netcontrol.send({
+                code: CMD.C_to_S.position,
                 data: {
                     x: this.ball[global.sign].node.x,
                     y: this.ball[global.sign].node.y
                 }
-            }));
+            });
         }, this);
         this.Bg.on(cc.Node.EventType.TOUCH_END, function (event) {
             if (0 !== global.state) return;
@@ -74,13 +83,13 @@ cc.Class({
             var y = event.getDeltaY();
             this.ball[global.sign].node.x += x;
             this.ball[global.sign].node.y += y;
-            netControl.send(JSON.stringify({
-                code: 1001,
+            global.netcontrol.send({
+                code: CMD.C_to_S.position,
                 data: {
                     x: this.ball[global.sign].node.x,
                     y: this.ball[global.sign].node.y
                 }
-            }));
+            });
         }, this);
     },
     pengzhuang: function () {
@@ -111,23 +120,47 @@ cc.Class({
                 this.ball[0].velocity.y = Math.abs(velocityY);
             }
             this.title.string = "碰撞";
-            console.log('碰撞');
-            //netControl.send("pengzhuangSound");
             cc.audioEngine.playEffect(this.pengzhuangSound, false);
         }
+    },
+    onTouchMove: function () {
+        if (0 !== global.radian) {
+            this.ball[global.sign].node.rotation = global.radian / Math.PI * 180;
+        }
+        this.ball[global.sign].node.x += global.speed * Math.sin(global.radian);
+        this.ball[global.sign].node.y += global.speed * Math.cos(global.radian);
+        global.sPos = this.ball[global.sign].node.getPosition();
+    },
+    otherMove: function (data) {
+        global.other = data;
+        var index = (global.sign + 1) % 2;
+        this.ball[index].node.setPosition(data.tPos);
+        if (0 !== data.radian) {
+            this.ball[index].node.rotation = data.radian / Math.PI * 180;
+        }
+    },
+    synMove: function () {
+        if(global.other){
+            var index = (global.sign + 1) % 2;
+            this.ball[index].node.y += global.other.speed * Math.cos(global.other.radian);
+            this.ball[index].node.x += global.other.speed * Math.sin(global.other.radian);
+        }
+    },
+    doMove: function () {
+        var index = (global.sign + 1) % 2;
+    },
+    doStop: function () {
+
     },
     buttonClick: function () {
         this.title.string = "正在等待其他玩家";
         global.state = 1;
         this.next.node.active = false;
-        netControl.send(JSON.stringify({
-            code: 1002,
-            data: {}
-        }));
-        // console.log('login button click = ' + global.type);
-        // this.ball[0].unscheduleAllCallbacks();
-        // this.ball[1].unscheduleAllCallbacks();
-        // this.node.dispatchEvent(new cc.Event.EventCustom('enterMainWorld',true));
+        global.netcontrol.send({
+            code: CMD.C_to_S.startGame,
+            data: {
+            }
+        });
     },
     start() {
 

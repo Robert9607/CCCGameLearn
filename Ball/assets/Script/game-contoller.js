@@ -1,12 +1,16 @@
 import global from "./global";
-import netControl from "./Net/NetControl";
-import EventListener from "./Net/EventListener ";
+import NetControl from "./Net/NetControl";
+import EventListener from "./Net/EventListener";
 
 const GameContoller = cc.Class({
     extends: cc.Component,
 
     properties: {
         main_world_prefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        joystick_prefab: {
             default: null,
             type: cc.Prefab
         },
@@ -18,10 +22,13 @@ const GameContoller = cc.Class({
 
     onLoad: function () {
         global.eventlistener = EventListener({});
-        netControl.connect();
+        global.netcontrol = NetControl({});
+        global.netcontrol.connect();
         global.eventlistener.on("enterMainWorld", this.enterMainWorld.bind(this));
         cc.audioEngine.play(this.BGSound, true);
         global.eventlistener .fire('enterMainWorld');
+        var joystick = cc.instantiate(this.joystick_prefab);
+        this.node.addChild(joystick)
     },
     enterMainWorld: function (event) {
         if (this.runningWorld != undefined) {
